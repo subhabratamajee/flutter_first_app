@@ -1,72 +1,57 @@
+
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
-  MyApp({super.key});
+class  MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  String buttonName = "clicked";
-  int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Subhabrata'),
-        ),
-        body: Center(
-            child: currentIndex==0? Container(
-          color: Color.fromARGB(255, 202, 152, 0),
-          width: double.infinity,
-          height: double.infinity,
-          child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.greenAccent,
-                      onPrimary: Colors.amber,
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        buttonName = buttonName;
-                      });
-                    },
-                    child: Text(buttonName)),
-                ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        buttonName = 'majee';
-                      });
-                    },
-                    child: Text(buttonName))
-              ]),
-        ):Image.asset('images/abc.jpeg')
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          items: const [
-            BottomNavigationBarItem(label: 'home', icon: Icon(Icons.home)),
-            BottomNavigationBarItem(
-                label: 'contact', icon: Icon(Icons.settings))
-          ],
-          currentIndex: currentIndex,
-          onTap: (int index) {
-            setState(() {
-              currentIndex = index;
-            });
-          },
-        ),
-      ),
+    return const MaterialApp(
+      home:  FirstPage(),
       debugShowCheckedModeBanner: false,
+      // theme: ThemeData(
+      //   primarySwatch: Colors.blue,
+      // ),
     );
   }
 }
 
+
+class FirstPage extends StatelessWidget {
+  const FirstPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(appBar: AppBar(title: const Text('data'),
+      ),
+      body: Center(
+    child: ElevatedButton(onPressed: (){
+      Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
+        return const SecondPage();
+      }));
+    }, child: const Text('nextPage')),    
+      ),
+      );
+  }
+}
+
+class SecondPage extends StatelessWidget {
+  const SecondPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(appBar: AppBar(title: const Text('Second Page'),
+    
+    automaticallyImplyLeading: false,
+      ),
+      body:const Center(
+        
+    child: Text(' this is subhabrata Majee,You can contact with me . My Mobile Number is 6297385213')    
+      ),
+      );
+  }
+}
